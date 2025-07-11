@@ -15,7 +15,8 @@ document.addEventListener('DOMContentLoaded', function() {
         devisForm.addEventListener('submit', function(e) {
             e.preventDefault();
             const route = document.getElementById('route').value;
-            const poids = parseFloat(document.getElementById('poids').value);
+            let poids = parseFloat(document.getElementById('poids').value);
+            if (isNaN(poids) || poids < 1) poids = 1;
             let prix = 0;
             if (route === 'france') {
                 prix = poids * 10000;
@@ -33,7 +34,8 @@ document.addEventListener('DOMContentLoaded', function() {
         devisFormAbout.addEventListener('submit', function(e) {
             e.preventDefault();
             const route = document.getElementById('route-about').value;
-            const poids = parseFloat(document.getElementById('poids-about').value);
+            let poids = parseFloat(document.getElementById('poids-about').value);
+            if (isNaN(poids) || poids < 1) poids = 1;
             let prix = 0;
             if (route === 'france') {
                 prix = poids * 10000;
