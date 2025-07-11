@@ -71,4 +71,12 @@ document.addEventListener('DOMContentLoaded', function() {
             resultatDevisAbout.textContent = `Prix total : ${prix.toLocaleString()} FCFA`;
         });
     }
+
+    // Animation FAQ
+    document.querySelectorAll('.faq-question').forEach(btn => {
+        btn.addEventListener('click', function() {
+            const item = btn.parentElement;
+            item.classList.toggle('open');
+        });
+    });
 });
