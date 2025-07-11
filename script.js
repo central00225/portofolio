@@ -11,7 +11,20 @@ document.addEventListener('DOMContentLoaded', function() {
     // Calcul automatique du devis
     const devisForm = document.getElementById('devis-form');
     const resultatDevis = document.getElementById('resultat-devis');
-    if (devisForm) {
+    const devisBtn = devisForm ? devisForm.querySelector('button[type="submit"]') : null;
+    const poidsInput = devisForm ? devisForm.querySelector('#poids') : null;
+    if (devisForm && devisBtn && poidsInput) {
+        poidsInput.addEventListener('input', function() {
+            if (poidsInput.value && parseFloat(poidsInput.value) > 0) {
+                devisBtn.classList.add('enabled');
+                devisBtn.disabled = false;
+            } else {
+                devisBtn.classList.remove('enabled');
+                devisBtn.disabled = true;
+            }
+        });
+        devisBtn.disabled = true;
+        devisBtn.classList.remove('enabled');
         devisForm.addEventListener('submit', function(e) {
             e.preventDefault();
             const route = document.getElementById('route').value;
@@ -30,7 +43,20 @@ document.addEventListener('DOMContentLoaded', function() {
     // Calcul automatique du devis sur la page À propos
     const devisFormAbout = document.getElementById('devis-form-about');
     const resultatDevisAbout = document.getElementById('resultat-devis-about');
-    if (devisFormAbout) {
+    const devisBtnAbout = devisFormAbout ? devisFormAbout.querySelector('button[type="submit"]') : null;
+    const poidsInputAbout = devisFormAbout ? devisFormAbout.querySelector('#poids-about') : null;
+    if (devisFormAbout && devisBtnAbout && poidsInputAbout) {
+        poidsInputAbout.addEventListener('input', function() {
+            if (poidsInputAbout.value && parseFloat(poidsInputAbout.value) > 0) {
+                devisBtnAbout.classList.add('enabled');
+                devisBtnAbout.disabled = false;
+            } else {
+                devisBtnAbout.classList.remove('enabled');
+                devisBtnAbout.disabled = true;
+            }
+        });
+        devisBtnAbout.disabled = true;
+        devisBtnAbout.classList.remove('enabled');
         devisFormAbout.addEventListener('submit', function(e) {
             e.preventDefault();
             const route = document.getElementById('route-about').value;

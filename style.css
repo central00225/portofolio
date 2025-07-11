@@ -105,20 +105,23 @@ section:hover {
 .contact-form button,
 #devis-form button,
 #devis-form-about button {
-    background: var(--primary);
+    background: #bdbdbd;
     color: #fff;
     border: none;
     padding: 1rem;
     border-radius: 4px;
     font-size: 1rem;
-    cursor: pointer;
-    transition: background 0.2s;
-    opacity: 1;
-}
-#devis-form button:disabled,
-#devis-form-about button:disabled {
-    opacity: 0.6;
     cursor: not-allowed;
+    transition: background 0.2s, box-shadow 0.2s;
+    opacity: 0.7;
+}
+#devis-form button.enabled,
+#devis-form-about button.enabled {
+    background: var(--accent);
+    color: #fff;
+    cursor: pointer;
+    opacity: 1;
+    box-shadow: 0 2px 8px rgba(0,188,212,0.15);
 }
 footer {
     text-align: center;
