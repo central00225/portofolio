@@ -6,6 +6,8 @@
     --text: #222;
     --footer-bg: #222;
     --footer-text: #fff;
+    --card-bg: #fff;
+    --card-shadow: 0 2px 16px rgba(0,0,0,0.08);
 }
 body {
     font-family: 'Segoe UI', Arial, sans-serif;
@@ -35,10 +37,25 @@ nav a {
     transition: color 0.2s;
     padding: 0.5rem 1rem;
     border-radius: 4px;
+    position: relative;
+}
+nav a::after {
+    content: '';
+    display: block;
+    width: 0;
+    height: 2px;
+    background: var(--accent);
+    transition: width 0.3s;
+    position: absolute;
+    left: 0;
+    bottom: -2px;
 }
 nav a:hover {
     background: var(--accent);
     color: #fff;
+}
+nav a:hover::after {
+    width: 100%;
 }
 .hero {
     text-align: center;
@@ -55,6 +72,11 @@ section {
     padding: 2rem;
     border-radius: 8px;
     box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    transition: box-shadow 0.3s, background 0.3s;
+}
+section:hover {
+    box-shadow: 0 4px 24px rgba(0,0,0,0.12);
+    background: #fafaff;
 }
 .projects-list {
     display: flex;
@@ -110,6 +132,23 @@ footer {
     text-decoration: none;
     font-weight: bold;
     margin-left: 0.5rem;
+}
+.fade-in {
+    opacity: 0;
+    transform: translateY(30px);
+    animation: fadeInUp 1s ease forwards;
+}
+@keyframes fadeInUp {
+    to {
+        opacity: 1;
+        transform: none;
+    }
+}
+.icon {
+    margin-right: 0.5em;
+    color: var(--primary);
+    font-size: 1.2em;
+    vertical-align: middle;
 }
 @media (max-width: 900px) {
     section {
