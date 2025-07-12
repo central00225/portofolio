@@ -107,28 +107,6 @@
       link.rel = 'stylesheet';
       document.head.appendChild(link);
     })();
-    // Ajout du bouton mode sombre
-    (function() {
-      const btn = document.createElement('button');
-      btn.textContent = '🌙 Mode sombre';
-      btn.style.position = 'fixed';
-      btn.style.bottom = '20px';
-      btn.style.right = '20px';
-      btn.style.zIndex = '9999';
-      btn.style.background = '#222';
-      btn.style.color = '#fff';
-      btn.style.border = 'none';
-      btn.style.padding = '0.7em 1.2em';
-      btn.style.borderRadius = '6px';
-      btn.style.cursor = 'pointer';
-      btn.style.boxShadow = '0 2px 8px rgba(0,0,0,0.15)';
-      btn.setAttribute('aria-label', 'Activer/désactiver le mode sombre');
-      document.body.appendChild(btn);
-      btn.addEventListener('click', function() {
-        document.body.classList.toggle('dark-mode');
-        btn.textContent = document.body.classList.contains('dark-mode') ? '☀️ Mode clair' : '🌙 Mode sombre';
-      });
-    })();
     // Bouton retour en haut
     const backToTop = document.getElementById('back-to-top');
     window.addEventListener('scroll', function() {
