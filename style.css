@@ -137,6 +137,64 @@ footer {
     width: 100%;
     text-align: center;
 }
+/* Boutons modernes et animés */
+button, .faq-question, .carousel-btn, .delete-colis {
+    background: linear-gradient(90deg, #ff9800 60%, #0052cc 100%);
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    font-size: 1.08em;
+    font-weight: bold;
+    padding: 0.8em 1.6em;
+    margin: 0.3em;
+    box-shadow: 0 2px 8px rgba(0,82,204,0.10);
+    cursor: pointer;
+    transition: background 0.3s, transform 0.2s, box-shadow 0.2s;
+    letter-spacing: 0.03em;
+    outline: none;
+    position: relative;
+    overflow: hidden;
+}
+button:hover, .faq-question:hover, .carousel-btn:hover, .delete-colis:hover {
+    background: linear-gradient(90deg, #0052cc 60%, #ff9800 100%);
+    transform: scale(1.07);
+    box-shadow: 0 4px 16px rgba(0,82,204,0.18);
+}
+button:active, .faq-question:active, .carousel-btn:active, .delete-colis:active {
+    transform: scale(0.98);
+}
+/* Effet ripple sur les boutons */
+button::after, .faq-question::after, .carousel-btn::after, .delete-colis::after {
+    content: '';
+    position: absolute;
+    left: 50%; top: 50%;
+    width: 0; height: 0;
+    background: rgba(255,255,255,0.3);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    transition: width 0.4s, height 0.4s, opacity 0.4s;
+    opacity: 0;
+    pointer-events: none;
+}
+button:active::after, .faq-question:active::after, .carousel-btn:active::after, .delete-colis:active::after {
+    width: 120px;
+    height: 120px;
+    opacity: 1;
+    transition: 0s;
+}
+/* Bouton calculer spécifique */
+button[type="submit"] {
+    background: linear-gradient(90deg, #00bcd4 60%, #ff9800 100%);
+    color: #fff;
+    font-size: 1.12em;
+    font-weight: bold;
+    letter-spacing: 0.04em;
+    box-shadow: 0 2px 12px rgba(0,188,212,0.12);
+}
+button[type="submit"]:hover {
+    background: linear-gradient(90deg, #ff9800 60%, #00bcd4 100%);
+    box-shadow: 0 4px 18px rgba(0,188,212,0.18);
+}
 @media (max-width: 900px) {
     main, header > div, footer {
         max-width: 98vw;
