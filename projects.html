@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projets</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Loader -->
+    <div id="loader"><div class="loader-ring"></div></div>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="index.html">Accueil</a></li>
+                <li><a href="about.html">À propos</a></li>
+                <li><a href="projects.html">Projets</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+    <!-- Scroll progress bar -->
+    <div id="scroll-progress"></div>
+    <!-- Menu hamburger -->
+    <div class="hamburger" id="hamburger-menu" aria-label="Ouvrir le menu" tabindex="0">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+    <!-- Bouton retour en haut -->
+    <div id="back-to-top" title="Retour en haut" aria-label="Retour en haut">&#8679;</div>
+    <main>
+        <section>
+            <h2>Mes Projets</h2>
+            <div class="projects-list">
+                <div class="project">
+                    <h3>Projet 1</h3>
+                    <p>Description du projet 1.</p>
+                </div>
+                <div class="project">
+                    <h3>Projet 2</h3>
+                    <p>Description du projet 2.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2025 Mon Portfolio</p>
+    </footer>
+    <script src="script.js"></script>
+    <script>
+    // Loader
+    window.addEventListener('load', function() {
+      var loader = document.getElementById('loader');
+      if(loader) loader.style.opacity = '0';
+      setTimeout(function(){ if(loader) loader.style.display = 'none'; }, 600);
+    });
+    // Scroll progress bar
+    window.addEventListener('scroll', function() {
+      var bar = document.getElementById('scroll-progress');
+      var scrolled = (window.scrollY / (document.body.scrollHeight - window.innerHeight)) * 100;
+      if(bar) bar.style.width = scrolled + '%';
+    });
+    // Menu hamburger
+    const hamburger = document.getElementById('hamburger-menu');
+    const navUl = document.querySelector('nav ul');
+    if(hamburger && navUl) {
+      hamburger.addEventListener('click', function() {
+        navUl.classList.toggle('open');
+      });
+      hamburger.addEventListener('keypress', function(e) {
+        if(e.key === 'Enter') navUl.classList.toggle('open');
+      });
+    }
+    // Ajout du bouton mode sombre
+    (function() {
+      const btn = document.createElement('button');
+      btn.textContent = '🌙 Mode sombre';
+      btn.style.position = 'fixed';
+      btn.style.bottom = '20px';
+      btn.style.right = '20px';
+      btn.style.zIndex = '9999';
+      btn.style.background = '#222';
+      btn.style.color = '#fff';
+      btn.style.border = 'none';
+      btn.style.padding = '0.7em 1.2em';
+      btn.style.borderRadius = '6px';
+      btn.style.cursor = 'pointer';
+      btn.style.boxShadow = '0 2px 8px rgba(0,0,0,0.15)';
+      btn.setAttribute('aria-label', 'Activer/désactiver le mode sombre');
+      document.body.appendChild(btn);
+      btn.addEventListener('click', function() {
+        document.body.classList.toggle('dark-mode');
+        btn.textContent = document.body.classList.contains('dark-mode') ? '☀️ Mode clair' : '🌙 Mode sombre';
+      });
+    })();
+    // Bouton retour en haut
+    const backToTop = document.getElementById('back-to-top');
+    window.addEventListener('scroll', function() {
+      if(window.scrollY > 300) {
+        backToTop.classList.add('show');
+      } else {
+        backToTop.classList.remove('show');
+      }
+    });
+    backToTop.onclick = function() {
+      window.scrollTo({top:0, behavior:'smooth'});
+    };
+    // Animation d'apparition au scroll
+    const fadeEls = document.querySelectorAll('.fade-in-scroll');
+    function checkFadeIn() {
+      fadeEls.forEach(el => {
+        const rect = el.getBoundingClientRect();
+        if(rect.top < window.innerHeight - 60) {
+          el.classList.add('visible');
+        }
+      });
+    }
+    window.addEventListener('scroll', checkFadeIn);
+    window.addEventListener('load', checkFadeIn);
+    </script>
+</body>
+</html>

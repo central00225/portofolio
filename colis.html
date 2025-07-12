@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ajouter un colis</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="fontawesome.min.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="index.html">Accueil</a></li>
+                <li><a href="about.html">À propos</a></li>
+                <li><a href="projects.html">Projets</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="colis.html">Colis</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section class="fade-in-scroll">
+            <h2><i class="fa-solid fa-box icon"></i>Ajouter un colis</h2>
+            <form id="colis-form" class="contact-form fade-in-scroll">
+                <input type="text" id="tracking" placeholder="Numéro de suivi" required aria-label="Numéro de suivi">
+                <input type="text" id="contenu" placeholder="Contenu du colis" required aria-label="Contenu du colis">
+                <input type="number" id="prix" placeholder="Prix d'achat (FCFA)" min="0" required aria-label="Prix d'achat">
+                <input type="text" id="client" placeholder="Nom du client" required aria-label="Nom du client">
+                <input type="date" id="date" required aria-label="Date d'ajout">
+                <select id="statut" required aria-label="Statut du colis">
+                    <option value="En transit">En transit</option>
+                    <option value="Arrivé">Arrivé</option>
+                    <option value="Livré">Livré</option>
+                </select>
+                <button type="submit">Ajouter le colis</button>
+                <div id="colis-feedback" style="display:none;color:green;margin-top:1em;font-weight:bold;">Colis ajouté !</div>
+            </form>
+            <h3>Mes colis ajoutés</h3>
+            <table id="colis-table" style="width:100%;margin-top:1em;border-collapse:collapse;">
+                <thead>
+                    <tr style="background:#e0f7fa;">
+                        <th>Numéro de suivi</th>
+                        <th>Contenu</th>
+                        <th>Prix d'achat (FCFA)</th>
+                        <th>Client</th>
+                        <th>Date</th>
+                        <th>Statut</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </section>
+    </main>
+    <footer>
+        <div class="footer-contact">
+            WhatsApp : <a href="https://wa.me/2250713916946" target="_blank">+225 07 13 91 69 46</a>
+            | Email : <a href="mailto:contact@chtransit.com">contact@chtransit.com</a>
+        </div>
+        <div class="footer-social">
+            <a href="https://facebook.com" target="_blank" aria-label="Facebook"><i class="fa-brands fa-facebook"></i></a>
+            <a href="https://twitter.com" target="_blank" aria-label="Twitter"><i class="fa-brands fa-twitter"></i></a>
+            <a href="https://linkedin.com" target="_blank" aria-label="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
+        </div>
+        <div class="footer-legal">
+            <a href="#" aria-label="Mentions légales">Mentions légales</a> | <a href="#" aria-label="Politique de confidentialité">Politique de confidentialité</a>
+        </div>
+        <p>&copy; 2025 CH.TRANSIT</p>
+    </footer>
+    <script>
+    // Animation fade-in-scroll
+    const fadeEls = document.querySelectorAll('.fade-in-scroll');
+    function checkFadeIn() {
+      fadeEls.forEach(el => {
+        const rect = el.getBoundingClientRect();
+        if(rect.top < window.innerHeight - 60) {
+          el.classList.add('visible');
+        }
+      });
+    }
+    window.addEventListener('scroll', checkFadeIn);
+    window.addEventListener('load', checkFadeIn);
+    // Ajout colis
+    const form = document.getElementById('colis-form');
+    const tableBody = document.querySelector('#colis-table tbody');
+    const feedback = document.getElementById('colis-feedback');
+    form.addEventListener('submit', function(e) {
+        e.preventDefault();
+        const tracking = document.getElementById('tracking').value.trim();
+        const contenu = document.getElementById('contenu').value.trim();
+        const prix = document.getElementById('prix').value.trim();
+        const client = document.getElementById('client').value.trim();
+        const date = document.getElementById('date').value;
+        const statut = document.getElementById('statut').value;
+        if(tracking && contenu && prix && client && date && statut) {
+            const row = document.createElement('tr');
+            row.innerHTML = `<td>${tracking}</td><td>${contenu}</td><td>${prix}</td><td>${client}</td><td>${date}</td><td>${statut}</td><td><button class='delete-colis' style='background:#e66c96;color:#fff;border:none;border-radius:4px;padding:0.3em 0.7em;cursor:pointer;'>Supprimer</button></td>`;
+            tableBody.appendChild(row);
+            feedback.style.display = 'block';
+            setTimeout(() => feedback.style.display = 'none', 2500);
+            form.reset();
+        }
+    });
+    tableBody.addEventListener('click', function(e) {
+        if(e.target.classList.contains('delete-colis')) {
+            e.target.closest('tr').remove();
+        }
+    });
+    </script>
+</body>
+</html>

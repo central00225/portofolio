@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CH.TRANSIT</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="fontawesome.min.css">
+    <link rel="icon" type="image/png" href="logo-chtransit.png">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Loader -->
+    <div id="loader"><div class="loader-ring"></div></div>
+    <!-- Scroll progress bar -->
+    <div id="scroll-progress"></div>
+    <!-- Bouton retour en haut -->
+    <div id="back-to-top" title="Retour en haut" aria-label="Retour en haut">&#8679;</div>
+    <header>
+        <div style="display:flex;align-items:center;justify-content:center;gap:1rem;">
+            <!-- Nouveau logo SVG -->
+            <svg width="180" height="54" viewBox="0 0 600 180" xmlns="http://www.w3.org/2000/svg" style="height:60px;max-width:300px;object-fit:contain;">
+              <rect x="20" y="30" width="160" height="100" rx="20" fill="#E66C96"/>
+              <g fill="white" transform="translate(50, 80)">
+                <circle cx="0" cy="0" r="4"/>
+                <line x1="5" y1="0" x2="30" y2="0" stroke="white" stroke-dasharray="4,4" stroke-width="2"/>
+                <polygon points="30,-5 60,0 30,5 33,0" fill="white"/>
+                <rect x="35" y="-2" width="12" height="4" fill="white" transform="rotate(25 35 0)"/>
+                <rect x="35" y="-2" width="12" height="4" fill="white" transform="rotate(-25 35 0)"/>
+                <rect x="28" y="-1.5" width="5" height="3" fill="white" transform="rotate(90 28 0)"/>
+              </g>
+              <text x="200" y="80" font-family="Arial Black, sans-serif" font-size="48" fill="#111">CH.TR</text>
+              <g transform="translate(340, 42) scale(1.4)">
+                <polygon points="0,40 20,0 40,40" fill="none" stroke="black" stroke-width="4"/>
+                <polygon points="13,32 20,17 27,32" fill="none" stroke="black" stroke-width="2"/>
+              </g>
+              <text x="410" y="80" font-family="Arial Black, sans-serif" font-size="48" fill="#111">NSIT</text>
+              <text x="200" y="140" font-family="Arial Black, sans-serif" font-size="28" fill="#111">SECURITE-RAPIDITE</text>
+            </svg>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Accueil</a></li>
+                    <li><a href="about.html">À propos</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="colis.html">Colis</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <main>
+        <section class="hero fade-in">
+            <h1>CH.TRANSIT</h1>
+            <p>Spécialiste du transport et de la logistique entre la France, la Chine et Abidjan.<br>
+            <strong>Tous nos services concernent exclusivement le transit de colis fret aérien.</strong></p>
+        </section>
+        <section class="fade-in">
+            <h2><i class="fa-solid fa-truck-fast icon"></i>Nos services</h2>
+            <ul>
+                <li>Transit de marchandises France-Abidjan</li>
+                <li>Transit de marchandises Chine-Abidjan</li>
+                <li>Suivi personnalisé et sécurisé</li>
+                <li>Assistance douanière</li>
+            </ul>
+        </section>
+        <section class="fade-in">
+            <h2><i class="fa-solid fa-calculator icon"></i>Devis</h2>
+            <p><strong>France &rarr; Abidjan :</strong> 10.000 FCFA / kg</p>
+            <p><strong>Chine &rarr; Abidjan :</strong> 12.000 FCFA / kg</p>
+            <p>Tarifs pour les articles ordinaires. Pour un devis personnalisé, contactez-nous.</p>
+            <form id="devis-form">
+                <label for="route">Itinéraire :</label>
+                <select id="route" required>
+                    <option value="france">France &rarr; Abidjan</option>
+                    <option value="chine">Chine &rarr; Abidjan</option>
+                </select>
+                <label for="poids">Poids (kg) :</label>
+                <input type="number" id="poids" min="1" required>
+                <button type="submit">Calculer</button>
+            </form>
+            <div id="resultat-devis"></div>
+        </section>
+        <section class="fade-in">
+            <h2><i class="fa-solid fa-route icon"></i>Itinéraires principaux</h2>
+            <ul>
+                <li>France &rarr; Abidjan</li>
+                <li>Chine &rarr; Abidjan</li>
+            </ul>
+        </section>
+        <section class="fade-in">
+            <h2><i class="fa-solid fa-clock icon"></i>Délais de livraison</h2>
+            <ul>
+                <li><strong>France &rarr; Abidjan :</strong> 5 jours</li>
+                <li><strong>Chine &rarr; Abidjan :</strong> 7 jours</li>
+            </ul>
+        </section>
+        <section class="fade-in">
+            <h2><i class="fa-solid fa-users icon"></i>Témoignages</h2>
+            <div class="carousel" id="carousel">
+                <div class="carousel-item active">
+                    <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Client 1, photo de profil" style="width:48px;height:48px;border-radius:50%;margin-bottom:0.5rem;">
+                    <p>“Service rapide et fiable, je recommande !”</p>
+                    <span>- Jean, Paris</span>
+                </div>
+                <div class="carousel-item">
+                    <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Client 2, photo de profil" style="width:48px;height:48px;border-radius:50%;margin-bottom:0.5rem;">
+                    <p>“Excellent suivi, colis arrivé en parfait état.”</p>
+                    <span>- Awa, Abidjan</span>
+                </div>
+                <div class="carousel-item">
+                    <img src="https://randomuser.me/api/portraits/men/45.jpg" alt="Client 3, photo de profil" style="width:48px;height:48px;border-radius:50%;margin-bottom:0.5rem;">
+                    <p>“Très bon accompagnement douanier.”</p>
+                    <span>- Li, Shanghai</span>
+                </div>
+                <button class="carousel-btn" id="prev">&#8592;</button>
+                <button class="carousel-btn" id="next">&#8594;</button>
+            </div>
+        </section>
+        <section class="fade-in" style="margin-top:2rem;">
+            <h2><i class="fa-solid fa-circle-question icon"></i>FAQ</h2>
+            <div class="faq">
+                <div class="faq-item">
+                    <button class="faq-question">Quels types de colis puis-je envoyer ?</button>
+                    <div class="faq-answer">Tous les colis ordinaires acceptés en fret aérien, hors marchandises dangereuses ou interdites.</div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question">Comment suivre mon colis ?</button>
+                    <div class="faq-answer">Un numéro de suivi vous est communiqué dès l’expédition pour un suivi en temps réel.</div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question">Comment obtenir un devis personnalisé ?</button>
+                    <div class="faq-answer">Utilisez le formulaire de devis ou contactez-nous directement par WhatsApp.</div>
+                </div>
+            </div>
+        </section>
+    </main>
+    <footer>
+        <div class="footer-contact">
+            WhatsApp : <a href="https://wa.me/2250713916946" target="_blank">+225 07 13 91 69 46</a>
+            | Email : <a href="mailto:contact@chtransit.com">contact@chtransit.com</a>
+        </div>
+        <div class="footer-social">
+            <a href="https://facebook.com" target="_blank" aria-label="Facebook"><i class="fa-brands fa-facebook"></i></a>
+            <a href="https://twitter.com" target="_blank" aria-label="Twitter"><i class="fa-brands fa-twitter"></i></a>
+            <a href="https://linkedin.com" target="_blank" aria-label="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
+        </div>
+        <div class="footer-legal">
+            <a href="#" aria-label="Mentions légales">Mentions légales</a> | <a href="#" aria-label="Politique de confidentialité">Politique de confidentialité</a>
+        </div>
+        <p>&copy; 2025 CH.TRANSIT</p>
+    </footer>
+    <script src="script.js"></script>
+    <script>
+    // Loader
+    window.addEventListener('load', function() {
+      var loader = document.getElementById('loader');
+      if(loader) loader.style.opacity = '0';
+      setTimeout(function(){ if(loader) loader.style.display = 'none'; }, 600);
+    });
+    // Scroll progress bar
+    window.addEventListener('scroll', function() {
+      var bar = document.getElementById('scroll-progress');
+      var scrolled = (window.scrollY / (document.body.scrollHeight - window.innerHeight)) * 100;
+      if(bar) bar.style.width = scrolled + '%';
+    });
+    // Menu hamburger
+    const hamburger = document.getElementById('hamburger-menu');
+    const navUl = document.querySelector('nav ul');
+    if(hamburger && navUl) {
+      hamburger.addEventListener('click', function() {
+        navUl.classList.toggle('open');
+      });
+      hamburger.addEventListener('keypress', function(e) {
+        if(e.key === 'Enter') navUl.classList.toggle('open');
+      });
+    }
+    // Google Fonts
+    (function() {
+      var link = document.createElement('link');
+      link.href = 'https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap';
+      link.rel = 'stylesheet';
+      document.head.appendChild(link);
+    })();
+    // Ajout du bouton mode sombre
+    (function() {
+      const btn = document.createElement('button');
+      btn.textContent = '🌙 Mode sombre';
+      btn.style.position = 'fixed';
+      btn.style.bottom = '20px';
+      btn.style.right = '20px';
+      btn.style.zIndex = '9999';
+      btn.style.background = '#222';
+      btn.style.color = '#fff';
+      btn.style.border = 'none';
+      btn.style.padding = '0.7em 1.2em';
+      btn.style.borderRadius = '6px';
+      btn.style.cursor = 'pointer';
+      btn.style.boxShadow = '0 2px 8px rgba(0,0,0,0.15)';
+      btn.setAttribute('aria-label', 'Activer/désactiver le mode sombre');
+      document.body.appendChild(btn);
+      btn.addEventListener('click', function() {
+        document.body.classList.toggle('dark-mode');
+        btn.textContent = document.body.classList.contains('dark-mode') ? '☀️ Mode clair' : '🌙 Mode sombre';
+      });
+    })();
+    // Carrousel témoignages
+    (function() {
+      const items = document.querySelectorAll('.carousel-item');
+      let current = 0;
+      function showItem(idx) {
+        items.forEach((el, i) => el.classList.toggle('active', i === idx));
+      }
+      document.getElementById('prev').onclick = function() {
+        current = (current - 1 + items.length) % items.length;
+        showItem(current);
+      };
+      document.getElementById('next').onclick = function() {
+        current = (current + 1) % items.length;
+        showItem(current);
+      };
+    })();
+    // Bouton retour en haut
+    const backToTop = document.getElementById('back-to-top');
+    window.addEventListener('scroll', function() {
+      if(window.scrollY > 300) {
+        backToTop.classList.add('show');
+      } else {
+        backToTop.classList.remove('show');
+      }
+    });
+    backToTop.onclick = function() {
+      window.scrollTo({top:0, behavior:'smooth'});
+    };
+    // Animation d'apparition au scroll
+    const fadeEls = document.querySelectorAll('.fade-in-scroll');
+    function checkFadeIn() {
+      fadeEls.forEach(el => {
+        const rect = el.getBoundingClientRect();
+        if(rect.top < window.innerHeight - 60) {
+          el.classList.add('visible');
+        }
+      });
+    }
+    window.addEventListener('scroll', checkFadeIn);
+    window.addEventListener('load', checkFadeIn);
+    </script>
+</body>
+</html>
