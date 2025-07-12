@@ -372,8 +372,8 @@ footer {
 }
 @media (prefers-color-scheme: dark) {
   :root {
-    --primary: #111c2b;
-    --secondary: #181a1b;
+    --primary: #0d1b2a;
+    --secondary: #1b263b;
     --accent: #e66c96;
     --text: #f5f5f5;
     --footer-bg: #222;
@@ -384,42 +384,67 @@ footer {
   body {
     background: var(--secondary);
     color: var(--text);
+    transition: background 0.4s, color 0.4s;
   }
-  header, section, .project, .faq-item {
+  header, section, .project, .faq-item, #colis-form, #colis-table {
     background: var(--card-bg);
     color: var(--text);
+    box-shadow: 0 2px 16px rgba(0,0,0,0.18);
+    border: 1px solid #222;
   }
   nav a {
     color: var(--text);
     background: var(--primary);
+    border: 1px solid #e66c96;
   }
   button, .faq-question {
     background: var(--accent);
     color: var(--text);
     border-color: var(--accent);
+    box-shadow: 0 2px 8px rgba(230,108,150,0.15);
+  }
+  #scroll-progress {
+    background: #e66c96;
+  }
+  #back-to-top {
+    background: #e66c96;
+    color: #fff;
   }
 }
-/* Mode sombre manuel */
 body.dark-mode {
-  background: #181a1b;
+  background: #1b263b;
   color: #f5f5f5;
+  transition: background 0.4s, color 0.4s;
 }
 body.dark-mode header,
 body.dark-mode section,
 body.dark-mode .project,
-body.dark-mode .faq-item {
+body.dark-mode .faq-item,
+body.dark-mode #colis-form,
+body.dark-mode #colis-table {
   background: #222;
   color: #f5f5f5;
+  box-shadow: 0 2px 16px rgba(0,0,0,0.18);
+  border: 1px solid #222;
 }
 body.dark-mode nav a {
   color: #f5f5f5;
-  background: #111c2b;
+  background: #0d1b2a;
+  border: 1px solid #e66c96;
 }
 body.dark-mode button,
 body.dark-mode .faq-question {
   background: #e66c96;
   color: #f5f5f5;
   border-color: #e66c96;
+  box-shadow: 0 2px 8px rgba(230,108,150,0.15);
+}
+body.dark-mode #scroll-progress {
+  background: #e66c96;
+}
+body.dark-mode #back-to-top {
+  background: #e66c96;
+  color: #fff;
 }
 /* Bouton retour en haut */
 #back-to-top {
