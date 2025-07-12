@@ -1,439 +1,68 @@
-/* Mode clair forcé */
+/* Nouveau style coloré et fond illustré */
 :root {
-    --primary: #1976d2;
-    --secondary: #f5f5f5;
-    --accent: #00bcd4;
+    --primary: #0052cc;
+    --secondary: #e3f2fd;
+    --accent: #ff9800;
     --text: #222;
-    --footer-bg: #222;
+    --footer-bg: #263238;
     --footer-text: #fff;
     --card-bg: #fff;
-    --card-shadow: 0 2px 16px rgba(0,0,0,0.08);
+    --card-shadow: 0 2px 16px rgba(0,0,0,0.10);
 }
 body {
-    font-family: 'Segoe UI', Arial, sans-serif;
+    font-family: 'Montserrat', 'Segoe UI', Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background: var(--secondary) !important;
-    color: var(--text) !important;
+    background: var(--secondary) url('https://raw.githubusercontent.com/central00225/portofolio/main/avion-colis-bg.svg') repeat top left;
+    background-size: 400px;
+    color: var(--text);
 }
 header {
-    background: var(--primary);
+    background: linear-gradient(90deg, #0052cc 60%, #ff9800 100%);
     color: #fff;
     padding: 1rem 0;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-}
-nav ul {
-    list-style: none;
-    display: flex;
-    justify-content: center;
-    gap: 2rem;
-    margin: 0;
-    padding: 0;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
 }
 nav a {
-    color: #fff !important;
-    text-decoration: none;
-    font-weight: bold;
-    transition: color 0.2s;
+    color: #fff;
+    background: #ff9800;
+    border-radius: 4px;
     padding: 0.5rem 1rem;
-    border-radius: 4px;
-    position: relative;
-    /* Ajout d'un contraste élevé pour l'accessibilité */
-    background: #1976d2 !important;
-}
-nav a:focus, button:focus, input:focus, textarea:focus, select:focus {
-    outline: 2px solid var(--accent);
-    outline-offset: 2px;
-    box-shadow: 0 0 0 2px #00bcd4aa;
-}
-nav a::after {
-    content: '';
-    display: block;
-    width: 0;
-    height: 2px;
-    background: var(--accent);
-    transition: width 0.3s;
-    position: absolute;
-    left: 0;
-    bottom: -2px;
-}
-nav a:hover {
-    background: var(--accent);
-    color: #fff;
-}
-nav a:hover::after {
-    width: 100%;
-}
-.hero {
-    text-align: center;
-    padding: 4rem 2rem;
-    background: var(--accent);
-    color: #fff;
-    border-radius: 0 0 16px 16px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-}
-section {
-    margin: 2rem auto;
-    max-width: 800px;
-    background: #fff;
-    padding: 2rem;
-    border-radius: 8px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-    transition: box-shadow 0.3s, background 0.3s;
-}
-section:hover {
-    box-shadow: 0 4px 24px rgba(0,0,0,0.12);
-    background: #fafaff;
-}
-img, video {
-    max-width: 100%;
-    height: auto;
-    display: block;
-}
-.projects-list {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 2rem;
-    justify-content: center;
-}
-.project {
-    min-width: 220px;
-    max-width: 100%;
-    box-sizing: border-box;
-    background: #e0f7fa;
-    padding: 1rem;
-    border-radius: 6px;
-    flex: 1 1 300px;
-    box-shadow: 0 1px 4px rgba(0,0,0,0.04);
-}
-.contact-form {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-    width: 100%;
-    box-sizing: border-box;
-}
-.contact-form input,
-.contact-form textarea {
-    padding: 0.8rem;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    font-size: 1rem;
-}
-.contact-form button,
-#devis-form button,
-#devis-form-about button {
-    background: #bdbdbd;
-    color: #fff;
-    border: none;
-    padding: 1rem;
-    border-radius: 4px;
-    font-size: 1rem;
-    cursor: not-allowed;
-    transition: background 0.2s, box-shadow 0.2s;
-    opacity: 0.7;
-}
-button, .faq-question {
-    font-size: 1rem;
+    margin: 0 0.2em;
     font-weight: bold;
-    border-radius: 4px;
-    border: 2px solid var(--accent);
-    background: var(--accent);
-    color: #fff;
     transition: background 0.2s, color 0.2s;
 }
-button:disabled {
-    opacity: 0.5;
-    cursor: not-allowed;
-}
-#devis-form button.enabled,
-#devis-form-about button.enabled {
-    background: var(--accent);
+nav a:hover {
+    background: #0052cc;
     color: #fff;
-    cursor: pointer;
-    opacity: 1;
-    box-shadow: 0 2px 8px rgba(0,188,212,0.15);
 }
-footer {
-    text-align: center;
-    padding: 2rem 0 1rem 0;
-    background: var(--footer-bg);
-    color: var(--footer-text);
-    margin-top: 2rem;
-    border-radius: 16px 16px 0 0;
-}
-.footer-contact {
-    margin-bottom: 1rem;
-    font-size: 1.1rem;
-}
-.footer-contact a {
-    color: #25d366;
-    text-decoration: none;
-    font-weight: bold;
-    margin-left: 0.5rem;
-}
-.footer-social {
-  margin: 1em 0;
-}
-.footer-social a {
-  margin: 0 0.5em;
-  color: #25d366;
-  font-size: 1.5em;
-  transition: color 0.2s;
-}
-.footer-social a:hover {
-  color: var(--accent);
-}
-.footer-legal {
-  font-size: 0.95em;
-  margin-bottom: 0.5em;
-}
-.footer-legal a {
-  color: #fff;
-  text-decoration: underline;
-  margin: 0 0.5em;
-}
-.fade-in {
-    opacity: 0;
-    transform: translateY(30px);
-    animation: fadeInUp 1s ease forwards;
-}
-@keyframes fadeInUp {
-    to {
-        opacity: 1;
-        transform: none;
-    }
+section, #colis-form, #colis-table {
+    background: rgba(255,255,255,0.95);
+    border-radius: 12px;
+    box-shadow: 0 2px 16px rgba(0,0,0,0.10);
+    margin-bottom: 2rem;
 }
 .icon {
-    margin-right: 0.5em;
-    color: var(--primary);
-    font-size: 1.2em;
-    vertical-align: middle;
+    color: #ff9800;
 }
-.faq {
-    margin-top: 1rem;
-    max-width: 700px;
-    margin-left: auto;
-    margin-right: auto;
+footer {
+    background: var(--footer-bg);
+    color: var(--footer-text);
+    border-radius: 16px 16px 0 0;
 }
-.faq-item {
-    margin-bottom: 1rem;
-    border-radius: 8px;
-    background: #fff;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.04);
-    overflow: hidden;
+/* Ajout d'avions et colis SVG en fond */
+body::before {
+    content: '';
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    z-index: 0;
+    opacity: 0.12;
+    pointer-events: none;
+    background: url('https://raw.githubusercontent.com/central00225/portofolio/main/avion.svg') repeat-x top left,
+                url('https://raw.githubusercontent.com/central00225/portofolio/main/colis.svg') repeat-x bottom right;
+    background-size: 180px, 120px;
 }
-.faq-question {
-    width: 100%;
-    text-align: left;
-    background: #f5f5f5;
-    border: none;
-    padding: 1rem;
-    font-size: 1.1rem;
-    font-weight: bold;
-    cursor: pointer;
-    transition: background 0.2s;
-}
-.faq-question:hover {
-    background: #e0f7fa;
-}
-.faq-answer {
-    display: none;
-    padding: 1rem;
-    border-top: 1px solid #eee;
-    color: #333;
-    background: #fafaff;
-    font-size: 1rem;
-}
-.faq-item.open .faq-answer {
-    display: block;
-    animation: fadeInUp 0.5s;
-}
-.carousel {
-  position: relative;
-  max-width: 400px;
-  margin: 2rem auto;
-  text-align: center;
-}
-.carousel-item {
-  display: none;
-  flex-direction: column;
-  align-items: center;
-  background: #e0f7fa;
-  border-radius: 8px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-  padding: 1.5rem;
-  animation: fadeInUp 0.7s;
-}
-.carousel-item.active {
-  display: flex;
-}
-.carousel-btn {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  background: var(--accent);
-  color: #fff;
-  border: none;
-  border-radius: 50%;
-  width: 36px;
-  height: 36px;
-  font-size: 1.5em;
-  cursor: pointer;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.12);
-}
-#prev { left: 10px; }
-#next { right: 10px; }
-@media (max-width: 900px) {
-    section {
-        max-width: 98vw;
-        padding: 1rem;
-    }
-    .hero {
-        padding: 2rem 1rem;
-    }
-    nav ul {
-        gap: 1rem;
-    }
-}
-@media (max-width: 600px) {
-    nav ul {
-        flex-direction: column;
-        gap: 0.5rem;
-    }
-    .hero {
-        font-size: 1.1rem;
-    }
-    section {
-        padding: 0.5rem;
-    }
-    .projects-list {
-        flex-direction: column;
-        gap: 1rem;
-    }
-    .project {
-        min-width: unset;
-        width: 100%;
-    }
-    header, footer {
-        padding: 1rem 0.5rem;
-    }
-    .contact-form input,
-    .contact-form textarea {
-        font-size: 1em;
-        padding: 0.5em;
-    }
-    /* Colis page styles */
-#colis-form {
-  max-width: 400px;
-  margin: 2rem auto;
-  background: #fff;
-  border-radius: 8px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-  padding: 2rem;
-}
-#colis-form input, #colis-form button {
-  width: 100%;
-  margin-bottom: 1em;
-}
-#colis-table {
-  margin: 2rem auto;
-  background: #fff;
-  border-radius: 8px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-  overflow: hidden;
-}
-#colis-table th, #colis-table td {
-  padding: 0.8em;
-  border-bottom: 1px solid #e0f7fa;
-  text-align: left;
-}
-#colis-table th {
-  background: var(--accent);
-  color: #fff;
-}
-#colis-table tr:last-child td {
-  border-bottom: none;
-}
-#colis-table tr {
-  transition: background 0.2s;
-}
-#colis-table tr:hover {
-  background: #e0f7fa;
-}
-#colis-table td {
-  font-size: 1.05em;
-}
-#colis-feedback {
-  color: green;
-  font-weight: bold;
-  text-align: center;
-}
-}
-body.dark-mode {
-  background: #1b263b;
-  color: #f5f5f5;
-  transition: background 0.4s, color 0.4s;
-}
-body.dark-mode header,
-body.dark-mode section,
-body.dark-mode .project,
-body.dark-mode .faq-item,
-body.dark-mode #colis-form,
-body.dark-mode #colis-table {
-  background: #222;
-  color: #f5f5f5;
-  box-shadow: 0 2px 16px rgba(0,0,0,0.18);
-  border: 1px solid #222;
-}
-body.dark-mode nav a {
-  color: #f5f5f5;
-  background: #0d1b2a;
-  border: 1px solid #e66c96;
-}
-body.dark-mode button,
-body.dark-mode .faq-question {
-  background: #e66c96;
-  color: #f5f5f5;
-  border-color: #e66c96;
-  box-shadow: 0 2px 8px rgba(230,108,150,0.15);
-}
-body.dark-mode #scroll-progress {
-  background: #e66c96;
-}
-body.dark-mode #back-to-top {
-  background: #e66c96;
-  color: #fff;
-}
-/* Bouton retour en haut */
-#back-to-top {
-  position: fixed;
-  right: 20px;
-  bottom: 80px;
-  background: var(--accent) !important;
-  color: #fff !important;
-  border: none;
-  border-radius: 50%;
-  width: 44px;
-  height: 44px;
-  font-size: 2em;
-  cursor: pointer;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
-  display: none;
-  z-index: 9999;
-  transition: background 0.2s, transform 0.2s;
-}
-#back-to-top.show {
-  display: block;
-  transform: scale(1.1);
-}
-/* Animation d'apparition au scroll */
-.fade-in-scroll {
-  opacity: 0;
-  transform: translateY(40px);
-  transition: opacity 0.7s, transform 0.7s;
-}
-.fade-in-scroll.visible {
-  opacity: 1;
-  transform: none;
+main, header, footer, section, #colis-form, #colis-table {
+    position: relative;
+    z-index: 1;
 }
