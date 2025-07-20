@@ -134,8 +134,20 @@ footer {
     gap: 1rem;
 }
 .footer-contact, .footer-social, .footer-legal {
-    width: 100%;
+    color: #fff;
+    font-size: 1.08em;
     text-align: center;
+    z-index: 2;
+    position: relative;
+}
+.footer-contact a, .footer-social a, .footer-legal a {
+    color: #ff9800;
+    font-weight: bold;
+    text-decoration: underline;
+    transition: color 0.2s;
+}
+.footer-contact a:hover, .footer-social a:hover, .footer-legal a:hover {
+    color: #0052cc;
 }
 /* Boutons modernes et animés */
 button, .faq-question, .carousel-btn, .delete-colis {
@@ -296,9 +308,15 @@ button[type="submit"]:hover {
     background: #fafaff;
     font-size: 1rem;
     animation: fadeInUp 0.5s;
+    max-height: 0;
+    opacity: 0;
+    transition: max-height 0.5s, opacity 0.5s;
+    overflow: hidden;
 }
 .faq-item.open .faq-answer {
     display: block;
+    max-height: 300px;
+    opacity: 1;
 }
 @media (max-width: 900px) {
     main, header > div, footer {
