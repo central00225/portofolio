@@ -223,16 +223,18 @@
     }
     window.addEventListener('scroll', checkFadeIn);
     window.addEventListener('load', checkFadeIn);
-    // FAQ interactive
-    document.querySelectorAll('.faq-question').forEach(btn => {
+    // FAQ interactive robuste
+    (function() {
+      var faqs = document.querySelectorAll('.faq-item');
+      faqs.forEach(function(item) {
+        var btn = item.querySelector('.faq-question');
         btn.addEventListener('click', function() {
-            const item = btn.parentElement;
-            item.classList.toggle('open');
-            document.querySelectorAll('.faq-item').forEach(other => {
-                if(other !== item) other.classList.remove('open');
-            });
+          var isOpen = item.classList.contains('open');
+          faqs.forEach(function(other) { other.classList.remove('open'); });
+          if(!isOpen) item.classList.add('open');
         });
-    });
+      });
+    })();
     </script>
 </body>
 </html>
