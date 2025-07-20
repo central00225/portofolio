@@ -66,15 +66,19 @@
             <p><strong>France &rarr; Abidjan :</strong> 10.000 FCFA / kg</p>
             <p><strong>Chine &rarr; Abidjan :</strong> 12.000 FCFA / kg</p>
             <p>Tarifs pour les articles ordinaires. Pour un devis personnalisé, contactez-nous.</p>
-            <form id="devis-form">
-                <label for="route">Itinéraire :</label>
-                <select id="route" required>
-                    <option value="france">France &rarr; Abidjan</option>
-                    <option value="chine">Chine &rarr; Abidjan</option>
-                </select>
-                <label for="poids">Poids (kg) :</label>
-                <input type="number" id="poids" min="1" required>
-                <button type="submit">Calculer</button>
+            <form id="devis-form" class="devis-form-style">
+                <div class="devis-group">
+                    <label for="route"><i class="fa-solid fa-plane icon"></i> Itinéraire :</label>
+                    <select id="route" required>
+                        <option value="france">France &rarr; Abidjan</option>
+                        <option value="chine">Chine &rarr; Abidjan</option>
+                    </select>
+                </div>
+                <div class="devis-group">
+                    <label for="poids"><i class="fa-solid fa-weight-scale icon"></i> Poids (kg) :</label>
+                    <input type="number" id="poids" min="1" required placeholder="Ex : 5">
+                </div>
+                <button type="submit" class="devis-btn">Calculer</button>
             </form>
             <div id="resultat-devis"></div>
         </section>
