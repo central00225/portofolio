@@ -257,6 +257,49 @@ button[type="submit"]:hover {
     box-shadow: 0 4px 18px rgba(0,188,212,0.18);
     transform: scale(1.07);
 }
+/* Styles FAQ modernes */
+.faq-item {
+    margin-bottom: 1rem;
+    border-radius: 8px;
+    background: #fff;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+    overflow: hidden;
+    transition: box-shadow 0.3s, background 0.3s;
+}
+.faq-question {
+    width: 100%;
+    text-align: left;
+    background: #e3f2fd;
+    border: none;
+    padding: 1.2rem 1rem;
+    font-size: 1.1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s;
+    color: #0052cc;
+    border-bottom: 1px solid #ff9800;
+    border-radius: 8px 8px 0 0;
+    outline: none;
+    display: flex;
+    align-items: center;
+    gap: 0.7em;
+}
+.faq-question:hover, .faq-item.open .faq-question {
+    background: #ff9800;
+    color: #fff;
+}
+.faq-answer {
+    display: none;
+    padding: 1rem 1.2rem;
+    border-top: 1px solid #eee;
+    color: #333;
+    background: #fafaff;
+    font-size: 1rem;
+    animation: fadeInUp 0.5s;
+}
+.faq-item.open .faq-answer {
+    display: block;
+}
 @media (max-width: 900px) {
     main, header > div, footer {
         max-width: 98vw;

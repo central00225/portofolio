@@ -223,6 +223,16 @@
     }
     window.addEventListener('scroll', checkFadeIn);
     window.addEventListener('load', checkFadeIn);
+    // FAQ interactive
+    document.querySelectorAll('.faq-question').forEach(btn => {
+        btn.addEventListener('click', function() {
+            const item = btn.parentElement;
+            item.classList.toggle('open');
+            document.querySelectorAll('.faq-item').forEach(other => {
+                if(other !== item) other.classList.remove('open');
+            });
+        });
+    });
     </script>
 </body>
 </html>
