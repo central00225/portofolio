@@ -308,10 +308,9 @@ button[type="submit"]:hover {
     color: #333;
     background: #fafaff;
     font-size: 1rem;
-    animation: fadeInUp 0.5s;
     max-height: 0;
     opacity: 0;
-    transition: max-height 0.5s, opacity 0.5s;
+    transition: max-height 0.5s cubic-bezier(.4,0,.2,1), opacity 0.5s cubic-bezier(.4,0,.2,1);
     overflow: hidden;
 }
 .faq-item.open .faq-answer {
