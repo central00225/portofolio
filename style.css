@@ -46,9 +46,10 @@ section, #colis-form, #colis-table {
     color: #ff9800;
 }
 footer {
-    background: var(--footer-bg);
-    color: var(--footer-text);
+    background: linear-gradient(90deg, #0052cc 60%, #ff9800 100%);
+    color: #fff;
     border-radius: 16px 16px 0 0;
+    box-shadow: 0 2px 16px rgba(0,82,204,0.10);
 }
 /* Ajout d'avions et colis SVG en fond */
 body::before {
