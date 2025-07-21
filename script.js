@@ -71,4 +71,22 @@ document.addEventListener('DOMContentLoaded', function() {
             resultatDevisAbout.textContent = `Prix total : ${prix.toLocaleString()} FCFA`;
         });
     }
+
+    // Animation fade-in au scroll pour toutes les sections
+    window.addEventListener('scroll', function() {
+        document.querySelectorAll('.fade-in-scroll').forEach(function(el) {
+            var rect = el.getBoundingClientRect();
+            if(rect.top < window.innerHeight - 60) {
+                el.classList.add('visible');
+            }
+        });
+    });
+    window.addEventListener('DOMContentLoaded', function() {
+        document.querySelectorAll('.fade-in-scroll').forEach(function(el) {
+            var rect = el.getBoundingClientRect();
+            if(rect.top < window.innerHeight - 60) {
+                el.classList.add('visible');
+            }
+        });
+    });
 });
