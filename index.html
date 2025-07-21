@@ -47,12 +47,12 @@
         </div>
     </header>
     <main>
-        <section class="hero fade-in">
+        <section class="hero fade-in-scroll">
             <h1>CH.TRANSIT</h1>
             <p>Spécialiste du transport et de la logistique entre la France, la Chine et Abidjan.<br>
             <strong>Tous nos services concernent exclusivement le transit de colis fret aérien.</strong></p>
         </section>
-        <section class="fade-in">
+        <section class="fade-in-scroll">
             <h2><i class="fa-solid fa-truck-fast icon"></i>Nos services</h2>
             <ul>
                 <li>Transit de marchandises France-Abidjan</li>
@@ -61,7 +61,7 @@
                 <li>Assistance douanière</li>
             </ul>
         </section>
-        <section class="fade-in">
+        <section class="fade-in-scroll">
             <h2><i class="fa-solid fa-calculator icon"></i>Devis</h2>
             <p><strong>France &rarr; Abidjan :</strong> 10.000 FCFA / kg</p>
             <p><strong>Chine &rarr; Abidjan :</strong> 12.000 FCFA / kg</p>
@@ -79,24 +79,25 @@
                     <input type="number" id="poids" min="1" required placeholder="Ex : 5">
                 </div>
                 <button type="submit" class="devis-btn">Calculer</button>
+                <div id="devis-feedback" style="display:none;color:green;margin-top:1em;font-weight:bold;">Devis calculé !</div>
             </form>
             <div id="resultat-devis"></div>
         </section>
-        <section class="fade-in">
+        <section class="fade-in-scroll">
             <h2><i class="fa-solid fa-route icon"></i>Itinéraires principaux</h2>
             <ul>
                 <li>France &rarr; Abidjan</li>
                 <li>Chine &rarr; Abidjan</li>
             </ul>
         </section>
-        <section class="fade-in">
+        <section class="fade-in-scroll">
             <h2><i class="fa-solid fa-clock icon"></i>Délais de livraison</h2>
             <ul>
                 <li><strong>France &rarr; Abidjan :</strong> 5 jours</li>
                 <li><strong>Chine &rarr; Abidjan :</strong> 7 jours</li>
             </ul>
         </section>
-        <section class="fade-in">
+        <section class="fade-in-scroll">
             <h2><i class="fa-solid fa-users icon"></i>Témoignages</h2>
             <div class="carousel" id="carousel">
                 <div class="carousel-item active">
@@ -118,7 +119,7 @@
                 <button class="carousel-btn" id="next">&#8594;</button>
             </div>
         </section>
-        <section class="fade-in" style="margin-top:2rem;">
+        <section class="fade-in-scroll" style="margin-top:2rem;">
             <h2><i class="fa-solid fa-circle-question icon"></i>FAQ</h2>
             <div class="faq">
                 <div class="faq-item">
@@ -211,18 +212,19 @@
     backToTop.onclick = function() {
       window.scrollTo({top:0, behavior:'smooth'});
     };
-    // Animation d'apparition au scroll
-    const fadeEls = document.querySelectorAll('.fade-in-scroll');
-    function checkFadeIn() {
-      fadeEls.forEach(el => {
-        const rect = el.getBoundingClientRect();
-        if(rect.top < window.innerHeight - 60) {
-          el.classList.add('visible');
-        }
-      });
-    }
-    window.addEventListener('scroll', checkFadeIn);
-    window.addEventListener('load', checkFadeIn);
+    // Animation d'apparition au scroll (fade-in)
+    (function() {
+      function checkFadeIn() {
+        document.querySelectorAll('.fade-in-scroll').forEach(function(el) {
+          var rect = el.getBoundingClientRect();
+          if(rect.top < window.innerHeight - 60) {
+            el.classList.add('visible');
+          }
+        });
+      }
+      window.addEventListener('scroll', checkFadeIn);
+      window.addEventListener('load', checkFadeIn);
+    })();
     // FAQ interactive ultra-compatible
     window.addEventListener('DOMContentLoaded', function() {
       var faqs = document.querySelectorAll('.faq-item');
@@ -235,6 +237,19 @@
         };
       });
     });
+    // Feedback visuel après calcul du devis
+    var devisForm = document.getElementById('devis-form');
+    if(devisForm) {
+      devisForm.addEventListener('submit', function(e) {
+        setTimeout(function() {
+          var feedback = document.getElementById('devis-feedback');
+          if(feedback) {
+            feedback.style.display = 'block';
+            setTimeout(function(){ feedback.style.display = 'none'; }, 2500);
+          }
+        }, 100);
+      });
+    }
     </script>
 </body>
 </html>
