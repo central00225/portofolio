@@ -78,6 +78,7 @@
                     <input type="number" id="poids-about" min="1" required placeholder="Ex : 5">
                 </div>
                 <button type="submit" class="devis-btn">Calculer</button>
+                <div id="devis-feedback-about" style="display:none;color:green;margin-top:1em;font-weight:bold;">Devis calculé !</div>
             </form>
             <div id="resultat-devis-about"></div>
         </section>
@@ -86,6 +87,15 @@
     <footer>
         <div class="footer-contact">
             WhatsApp : <a href="https://wa.me/2250713916946" target="_blank">+225 07 13 91 69 46</a>
+            | Email : <a href="mailto:contact@chtransit.com">contact@chtransit.com</a>
+        </div>
+        <div class="footer-social">
+            <a href="https://facebook.com" target="_blank" aria-label="Facebook"><i class="fa-brands fa-facebook"></i></a>
+            <a href="https://twitter.com" target="_blank" aria-label="Twitter"><i class="fa-brands fa-twitter"></i></a>
+            <a href="https://linkedin.com" target="_blank" aria-label="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
+        </div>
+        <div class="footer-legal">
+            <a href="#" aria-label="Mentions légales">Mentions légales</a> | <a href="#" aria-label="Politique de confidentialité">Politique de confidentialité</a>
         </div>
         <p>&copy; 2025 CH.TRANSIT</p>
     </footer>
@@ -145,6 +155,25 @@
     }
     window.addEventListener('scroll', checkFadeIn);
     window.addEventListener('load', checkFadeIn);
+    // Feedback visuel après calcul du devis (about)
+    var devisFormAbout = document.getElementById('devis-form-about');
+    if(devisFormAbout) {
+      devisFormAbout.addEventListener('submit', function(e) {
+        e.preventDefault();
+        var route = document.getElementById('route-about').value;
+        var poids = parseFloat(document.getElementById('poids-about').value);
+        var prix = 0;
+        if(route === 'france') prix = poids * 10000;
+        else if(route === 'chine') prix = poids * 12000;
+        var feedback = document.getElementById('devis-feedback-about');
+        if(feedback) {
+          feedback.style.display = 'block';
+          setTimeout(function(){ feedback.style.display = 'none'; }, 2000);
+        }
+        var resultatDevisAbout = document.getElementById('resultat-devis-about');
+        if(resultatDevisAbout) resultatDevisAbout.textContent = `Prix total : ${prix.toLocaleString()} FCFA`;
+      });
+    }
     </script>
 </body>
 </html>
