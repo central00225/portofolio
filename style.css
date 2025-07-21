@@ -30,11 +30,31 @@ nav a {
     padding: 0.5rem 1rem;
     margin: 0 0.2em;
     font-weight: bold;
-    transition: background 0.2s, color 0.2s;
+    position: relative;
+    transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+    overflow: hidden;
 }
-nav a:hover {
+nav a::after {
+    content: '';
+    display: block;
+    position: absolute;
+    left: 20%;
+    right: 20%;
+    bottom: 8px;
+    height: 3px;
+    background: linear-gradient(90deg, #ff9800 60%, #0052cc 100%);
+    border-radius: 2px;
+    transform: scaleX(0);
+    transition: transform 0.3s cubic-bezier(.4,0,.2,1);
+}
+nav a:hover, nav a:focus {
     background: #0052cc;
     color: #fff;
+    box-shadow: 0 4px 16px rgba(0,82,204,0.18);
+}
+nav a:hover::after, nav a:focus::after {
+    transform: scaleX(1);
 }
 section, #colis-form, #colis-table {
     background: rgba(255,255,255,0.95);
@@ -144,11 +164,31 @@ footer {
 .footer-contact a, .footer-social a, .footer-legal a {
     color: #ff9800;
     font-weight: bold;
-    text-decoration: underline;
-    transition: color 0.2s;
+    text-decoration: none;
+    position: relative;
+    transition: color 0.2s, box-shadow 0.2s;
 }
-.footer-contact a:hover, .footer-social a:hover, .footer-legal a:hover {
+.footer-contact a::after, .footer-social a::after, .footer-legal a::after {
+    content: '';
+    display: block;
+    position: absolute;
+    left: 20%;
+    right: 20%;
+    bottom: 2px;
+    height: 2px;
+    background: linear-gradient(90deg, #ff9800 60%, #0052cc 100%);
+    border-radius: 2px;
+    transform: scaleX(0);
+    transition: transform 0.3s cubic-bezier(.4,0,.2,1);
+}
+.footer-contact a:hover, .footer-social a:hover, .footer-legal a:hover,
+.footer-contact a:focus, .footer-social a:focus, .footer-legal a:focus {
     color: #0052cc;
+    box-shadow: 0 2px 8px rgba(0,82,204,0.10);
+}
+.footer-contact a:hover::after, .footer-social a:hover::after, .footer-legal a:hover::after,
+.footer-contact a:focus::after, .footer-social a:focus::after, .footer-legal a:focus::after {
+    transform: scaleX(1);
 }
 /* Boutons modernes et animés */
 button, .faq-question, .carousel-btn, .delete-colis {

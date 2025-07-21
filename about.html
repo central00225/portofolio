@@ -11,8 +11,17 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <!-- Loader -->
-    <div id="loader"><div class="loader-ring"></div></div>
+    <!-- Loader SVG animé -->
+    <div id="loader">
+      <svg class="loader-svg" width="64" height="64" viewBox="0 0 64 64">
+        <circle cx="32" cy="32" r="28" fill="none" stroke="#ff9800" stroke-width="8" stroke-linecap="round" stroke-dasharray="44 88" stroke-dashoffset="0">
+          <animateTransform attributeName="transform" type="rotate" from="0 32 32" to="360 32 32" dur="1s" repeatCount="indefinite"/>
+        </circle>
+        <circle cx="32" cy="32" r="16" fill="none" stroke="#0052cc" stroke-width="6" stroke-linecap="round" stroke-dasharray="25 50" stroke-dashoffset="0">
+          <animateTransform attributeName="transform" type="rotate" from="360 32 32" to="0 32 32" dur="1.2s" repeatCount="indefinite"/>
+        </circle>
+      </svg>
+    </div>
     <!-- Scroll progress bar -->
     <div id="scroll-progress"></div>
     <header>
