@@ -351,6 +351,14 @@ button[type="submit"]:hover {
     background: #128c7e;
     transform: scale(1.08);
 }
+header svg {
+    transition: transform 0.5s cubic-bezier(.4,0,.2,1), filter 0.5s;
+    cursor: pointer;
+}
+header svg:hover {
+    transform: scale(1.07) rotate(-2deg);
+    filter: drop-shadow(0 4px 16px #0052cc44);
+}
 @media (max-width: 900px) {
     main, header > div, footer {
         max-width: 98vw;
