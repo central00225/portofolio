@@ -310,53 +310,64 @@ button[type="submit"]:hover {
     box-shadow: 0 4px 18px rgba(0,188,212,0.18);
     transform: scale(1.07);
 }
-/* Styles FAQ modernes */
+/* FAQ animée et accessible */
+.faq {
+    margin: 2rem 0 0 0;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+}
 .faq-item {
-    margin-bottom: 1rem;
-    border-radius: 8px;
+    margin-bottom: 1.2rem;
+    border-radius: 10px;
+    box-shadow: 0 2px 12px rgba(0,82,204,0.08);
     background: #fff;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.04);
     overflow: hidden;
-    transition: box-shadow 0.3s, background 0.3s;
+    transition: box-shadow 0.2s;
+}
+.faq-item.open {
+    box-shadow: 0 6px 24px rgba(0,82,204,0.16);
 }
 .faq-question {
     width: 100%;
     text-align: left;
-    background: #e3f2fd;
-    border: none;
-    padding: 1.2rem 1rem;
-    font-size: 1.1rem;
-    font-weight: bold;
-    cursor: pointer;
-    transition: background 0.2s, color 0.2s;
-    color: #0052cc;
-    border-bottom: 1px solid #ff9800;
-    border-radius: 8px 8px 0 0;
-    outline: none;
-    display: flex;
-    align-items: center;
-    gap: 0.7em;
-}
-.faq-question:hover, .faq-item.open .faq-question {
-    background: #ff9800;
+    background: linear-gradient(90deg, #ff9800 60%, #0052cc 100%);
     color: #fff;
+    border: none;
+    border-radius: 0;
+    font-size: 1.1em;
+    font-weight: bold;
+    padding: 1.1em 1.5em;
+    cursor: pointer;
+    outline: none;
+    transition: background 0.2s;
+    position: relative;
+}
+.faq-question::after {
+    content: '\25BC';
+    position: absolute;
+    right: 1.5em;
+    top: 50%;
+    transform: translateY(-50%) rotate(0deg);
+    transition: transform 0.3s;
+}
+.faq-item.open .faq-question::after {
+    transform: translateY(-50%) rotate(180deg);
 }
 .faq-answer {
-    display: none;
-    padding: 1rem 1.2rem;
-    border-top: 1px solid #eee;
-    color: #333;
-    background: #fafaff;
-    font-size: 1rem;
     max-height: 0;
     opacity: 0;
-    transition: max-height 0.5s cubic-bezier(.4,0,.2,1), opacity 0.5s cubic-bezier(.4,0,.2,1);
+    padding: 0 1.5em;
+    color: #222;
+    background: #f7f7f7;
+    font-size: 1em;
+    transition: max-height 0.4s cubic-bezier(.4,0,.2,1), opacity 0.3s;
     overflow: hidden;
 }
 .faq-item.open .faq-answer {
-    display: block;
-    max-height: 300px;
+    max-height: 200px;
     opacity: 1;
+    padding: 1em 1.5em;
 }
 /* Animation d'apparition au scroll */
 .fade-in-scroll {
