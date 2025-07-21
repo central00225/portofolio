@@ -115,6 +115,30 @@ header > div {
     justify-content: space-between;
     gap: 2rem;
 }
+/* Centrage de la navigation dans l’en-tête */
+.header-flex {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 2.5rem;
+    position: relative;
+}
+.header-nav-center {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+}
+.header-nav-center ul {
+    display: flex;
+    gap: 1.2rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+.header-nav-center li {
+    display: flex;
+    align-items: center;
+}
 nav ul {
     display: flex;
     flex-wrap: wrap;
@@ -524,6 +548,17 @@ header svg:hover {
     }
     .news-card {
         max-width: 100%;
+    }
+}
+@media (max-width: 700px) {
+    .header-flex {
+        flex-direction: column;
+        gap: 1.2rem;
+        align-items: stretch;
+    }
+    .header-nav-center {
+        justify-content: center;
+        width: 100%;
     }
 }
 @media (max-width: 600px) {
