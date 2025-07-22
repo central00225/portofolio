@@ -416,7 +416,7 @@ button[type="submit"]:hover {
 .whatsapp-float {
     position: fixed;
     right: 24px;
-    bottom: 24px;
+    bottom: 104px; /* remonte le bouton pour séparer du chatbot */
     background: #25d366;
     color: #fff;
     border-radius: 50%;
