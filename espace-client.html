@@ -47,33 +47,43 @@
         <button type="submit" class="devis-btn">Créer mon compte</button>
         <div id="client-register-feedback" style="display:none;color:green;margin-top:1em;font-weight:bold;">Compte créé !</div>
       </form>
-      <form id="client-add-colis-form" class="devis-form-style" style="display:none; margin-top:2rem;">
+      <form id="client-add-colis-form" class="devis-form-style" style="display:none; margin-top:2rem;" action="https://formspree.io/f/xzzvella" method="POST" enctype="multipart/form-data">
         <h2>Ajouter un colis</h2>
+        <input type="hidden" name="_subject" value="Nouveau colis ajouté via Espace Client">
+        <input type="hidden" name="_next" value="https://central00225.github.io/portofolio/espace-client.html?success=1">
         <div class="devis-group">
           <label for="colis-suivi"><i class="fa-solid fa-hashtag icon"></i> Numéro de suivi :</label>
-          <input type="text" id="colis-suivi" required placeholder="Numéro de suivi du colis">
+          <input type="text" id="colis-suivi" name="Numéro de suivi" required placeholder="Numéro de suivi du colis">
         </div>
         <div class="devis-group">
           <label for="colis-description"><i class="fa-solid fa-box icon"></i> Description du colis :</label>
-          <input type="text" id="colis-description" required placeholder="Ex : vêtements, téléphone, etc.">
+          <input type="text" id="colis-description" name="Description" required placeholder="Ex : vêtements, téléphone, etc.">
         </div>
         <div class="devis-group">
           <label for="colis-nombre"><i class="fa-solid fa-list-ol icon"></i> Nombre d'articles :</label>
-          <input type="number" id="colis-nombre" min="1" required placeholder="Ex : 3">
+          <input type="number" id="colis-nombre" name="Nombre d'articles" min="1" required placeholder="Ex : 3">
         </div>
         <div class="devis-group">
           <label for="colis-prix"><i class="fa-solid fa-money-bill-wave icon"></i> Prix d'achat (FCFA) :</label>
-          <input type="number" id="colis-prix" min="0" step="0.01" required placeholder="Ex : 25000">
+          <input type="number" id="colis-prix" name="Prix d'achat" min="0" step="0.01" required placeholder="Ex : 25000">
         </div>
         <div class="devis-group">
           <label for="colis-capture"><i class="fa-solid fa-image icon"></i> Capture du colis (page vendeur) :</label>
-          <input type="file" id="colis-capture" accept="image/*" required>
+          <input type="file" id="colis-capture" name="Capture" accept="image/*" required>
         </div>
         <button type="submit" class="devis-btn">Ajouter le colis</button>
-        <div id="colis-feedback" style="display:none;color:green;margin-top:1em;font-weight:bold;">Colis ajouté !</div>
+        <div id="colis-feedback" style="display:none;color:green;margin-top:1em;font-weight:bold;">Votre colis a bien été envoyé ! Vous recevrez une confirmation par email.</div>
       </form>
     </section>
+    <section id="mes-colis-section" style="display:none;">
+      <h2>Mes Colis</h2>
+      <div id="mes-colis-list" style="display:flex;flex-direction:column;gap:1.2rem;"></div>
+    </section>
   </main>
+  <!-- Bouton flottant pour ajouter un colis -->
+  <button id="add-colis-float" style="display:none;position:fixed;right:24px;bottom:24px;background:#ff9800;color:#fff;border:none;border-radius:50%;width:56px;height:56px;box-shadow:0 4px 16px rgba(0,0,0,0.18);z-index:10000;cursor:pointer;font-size:2em;align-items:center;justify-content:center;">
+    <i class="fa-solid fa-plus"></i>
+  </button>
   <footer>
     <div class="footer-contact">
       WhatsApp : <a href="https://wa.me/2250713916946" target="_blank">+225 07 13 91 69 46</a>
@@ -101,29 +111,90 @@
       document.getElementById('client-login-feedback').style.display = 'block';
       setTimeout(function(){ document.getElementById('client-login-feedback').style.display = 'none'; }, 2000);
       setTimeout(function(){
-        document.getElementById('client-login-form').style.display = 'none';
-        document.getElementById('register-link').style.display = 'none';
-        document.getElementById('client-add-colis-form').style.display = 'block';
+        document.querySelector('section').style.display = 'none';
+        document.getElementById('mes-colis-section').style.display = 'block';
+        document.getElementById('add-colis-float').style.display = 'flex';
+        renderColis();
       }, 2200);
     };
-    // Feedback visuel inscription (démo, pas de backend)
-    document.getElementById('client-register-form').onsubmit = function(e) {
+    // Afficher la page Mes Colis après connexion
+    document.getElementById('client-login-form').onsubmit = function(e) {
       e.preventDefault();
-      document.getElementById('client-register-feedback').style.display = 'block';
-      setTimeout(function(){ document.getElementById('client-register-feedback').style.display = 'none'; }, 2000);
+      document.getElementById('client-login-feedback').style.display = 'block';
+      setTimeout(function(){ document.getElementById('client-login-feedback').style.display = 'none'; }, 2000);
       setTimeout(function(){
-        document.getElementById('client-register-form').style.display = 'none';
-        document.getElementById('client-login-form').style.display = 'block';
-        document.getElementById('register-link').style.display = 'block';
+        document.querySelector('section').style.display = 'none';
+        document.getElementById('mes-colis-section').style.display = 'block';
+        document.getElementById('add-colis-float').style.display = 'flex';
+        renderColis();
       }, 2200);
     };
-    // Feedback visuel ajout colis (démo, pas de backend)
+    // Bouton flottant pour afficher le formulaire d'ajout
+    document.getElementById('add-colis-float').onclick = function() {
+      document.getElementById('mes-colis-section').style.display = 'none';
+      document.getElementById('client-add-colis-form').style.display = 'block';
+      document.getElementById('add-colis-float').style.display = 'none';
+    };
+    // Après ajout d'un colis, revenir à la liste
     document.getElementById('client-add-colis-form').onsubmit = function(e) {
       e.preventDefault();
-      document.getElementById('colis-feedback').style.display = 'block';
-      setTimeout(function(){ document.getElementById('colis-feedback').style.display = 'none'; }, 2000);
-      document.getElementById('client-add-colis-form').reset();
+      // Récupérer les valeurs
+      const suivi = document.getElementById('colis-suivi').value;
+      const desc = document.getElementById('colis-description').value;
+      const nombre = document.getElementById('colis-nombre').value;
+      const prix = document.getElementById('colis-prix').value;
+      const capture = document.getElementById('colis-capture').files[0];
+      // Créer un objet colis
+      const reader = new FileReader();
+      reader.onload = function(evt) {
+        mesColis.push({suivi, desc, nombre, prix, capture: evt.target.result});
+        document.getElementById('colis-feedback').style.display = 'block';
+        setTimeout(function(){ document.getElementById('colis-feedback').style.display = 'none'; }, 2000);
+        document.getElementById('client-add-colis-form').reset();
+        setTimeout(function(){
+          document.getElementById('client-add-colis-form').style.display = 'none';
+          document.getElementById('mes-colis-section').style.display = 'block';
+          document.getElementById('add-colis-float').style.display = 'flex';
+          renderColis();
+        }, 2200);
+      };
+      if(capture) reader.readAsDataURL(capture);
+      else reader.onload();
     };
+    // Simuler la liste des colis (stockés en mémoire pour la démo)
+    let mesColis = [];
+    // Fonction pour afficher la liste des colis
+    function renderColis() {
+      const list = document.getElementById('mes-colis-list');
+      list.innerHTML = '';
+      if(mesColis.length === 0) {
+        list.innerHTML = '<p>Aucun colis ajouté pour le moment.</p>';
+      } else {
+        mesColis.forEach(function(colis, idx) {
+          const div = document.createElement('div');
+          div.className = 'colis-card';
+          div.style = 'background:#fff;border-radius:12px;box-shadow:0 2px 12px rgba(0,82,204,0.08);padding:1.2rem;display:flex;gap:1.2rem;align-items:center;';
+          div.innerHTML = `<div style='flex:1;'>
+            <strong>Suivi :</strong> ${colis.suivi}<br>
+            <strong>Description :</strong> ${colis.desc}<br>
+            <strong>Nombre d'articles :</strong> ${colis.nombre}<br>
+            <strong>Prix d'achat :</strong> ${colis.prix} FCFA
+          </div>
+          ${colis.capture ? `<img src='${colis.capture}' alt='Capture colis' style='width:80px;height:80px;object-fit:cover;border-radius:8px;border:1px solid #eee;'/>` : ''}`;
+          list.appendChild(div);
+        });
+      }
+    }
+    // Feedback visuel après soumission Formspree
+    const colisForm = document.getElementById('client-add-colis-form');
+    if (colisForm) {
+      colisForm.addEventListener('submit', function(e) {
+        setTimeout(function(){
+          document.getElementById('colis-feedback').style.display = 'block';
+          setTimeout(function(){ document.getElementById('colis-feedback').style.display = 'none'; }, 2000);
+        }, 500);
+      });
+    }
   </script>
 </body>
 </html>
