@@ -539,8 +539,9 @@ header svg:hover {
 }
 #back-to-top {
     position: fixed;
-    right: 24px;
-    bottom: 104px; /* remonte le bouton pour éviter le chevauchement avec WhatsApp/chatbot */
+    left: 24px;
+    bottom: 104px;
+    right: auto;
     background: linear-gradient(90deg, #ff9800 60%, #0052cc 100%);
     color: #fff;
     border-radius: 50%;
@@ -555,9 +556,15 @@ header svg:hover {
     transition: background 0.3s, transform 0.2s;
     z-index: 9999;
 }
-#back-to-top:hover {
-    background: linear-gradient(90deg, #0052cc 60%, #ff9800 100%);
-    transform: scale(1.1);
+@media (max-width: 700px) {
+    #back-to-top {
+        left: 12px !important;
+        bottom: 88px !important;
+        right: auto !important;
+        width: 44px;
+        height: 44px;
+        font-size: 1.5em;
+    }
 }
 @media (max-width: 900px) {
     main, header > div, footer {
