@@ -69,6 +69,12 @@
                     <li><a href="about.html">À propos</a></li>
                 </ul>
             </nav>
+            <!-- Menu hamburger -->
+            <div class="hamburger" id="hamburger-menu" aria-label="Ouvrir le menu" tabindex="0">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
         </div>
     </header>
     <main>
@@ -224,7 +230,7 @@
     });
     // Menu hamburger
     const hamburger = document.getElementById('hamburger-menu');
-    const navUl = document.querySelector('nav ul');
+    const navUl = document.querySelector('.header-nav-center ul');
     if(hamburger && navUl) {
       hamburger.addEventListener('click', function() {
         navUl.classList.toggle('open');
