@@ -538,8 +538,9 @@ header svg:hover {
     margin-top: 0.2em;
 }
 #back-to-top {
-    right: 2vw;
-    bottom: 2vw;
+    position: fixed;
+    right: 24px;
+    bottom: 104px; /* remonte le bouton pour éviter le chevauchement avec WhatsApp/chatbot */
     background: linear-gradient(90deg, #ff9800 60%, #0052cc 100%);
     color: #fff;
     border-radius: 50%;
@@ -552,14 +553,11 @@ header svg:hover {
     box-shadow: 0 4px 16px rgba(0,82,204,0.18);
     cursor: pointer;
     transition: background 0.3s, transform 0.2s;
+    z-index: 9999;
 }
 #back-to-top:hover {
     background: linear-gradient(90deg, #0052cc 60%, #ff9800 100%);
     transform: scale(1.1);
-}
-/* Section avis clients */
-.testimonials-section {
-    display: none;
 }
 @media (max-width: 900px) {
     main, header > div, footer {
@@ -613,6 +611,13 @@ header svg:hover {
         width: 100%;
     }
     .whatsapp-float {
+        bottom: 88px !important;
+        right: 12px;
+        width: 44px;
+        height: 44px;
+        font-size: 1.5em;
+    }
+    #back-to-top {
         bottom: 88px !important;
         right: 12px;
         width: 44px;
