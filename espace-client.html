@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Espace Client - CH.TRANSIT</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="fontawesome.min.css">
+</head>
+<body>
+  <header>
+    <nav>
+      <ul>
+        <li><a href="index.html">Accueil</a></li>
+        <li><a href="about.html">À propos</a></li>
+        <li><a href="espace-client.html">Espace Client</a></li>
+      </ul>
+    </nav>
+  </header>
+  <main>
+    <section>
+      <h1>Espace Client</h1>
+      <p>Pour ajouter un colis, veuillez d'abord vous connecter à votre compte ou en créer un nouveau.</p>
+      <button id="btn-ajouter-colis" class="devis-btn" style="margin-bottom:1.5rem;">Ajouter un colis</button>
+      <form id="client-login-form" class="devis-form-style" style="display:none;">
+        <div class="devis-group">
+          <label for="client-email"><i class="fa-solid fa-envelope icon"></i> Email :</label>
+          <input type="email" id="client-email" required placeholder="Votre email">
+        </div>
+        <div class="devis-group">
+          <label for="client-password"><i class="fa-solid fa-lock icon"></i> Mot de passe :</label>
+          <input type="password" id="client-password" required placeholder="Votre mot de passe">
+        </div>
+        <button type="submit" class="devis-btn">Connexion</button>
+        <div id="client-login-feedback" style="display:none;color:green;margin-top:1em;font-weight:bold;">Connexion réussie !</div>
+      </form>
+      <p id="register-link" style="display:none;">Pas encore de compte ? <a href="#" id="show-register">Inscrivez-vous ici</a></p>
+      <form id="client-register-form" class="devis-form-style" style="display:none;">
+        <div class="devis-group">
+          <label for="register-email"><i class="fa-solid fa-envelope icon"></i> Email :</label>
+          <input type="email" id="register-email" required placeholder="Votre email">
+        </div>
+        <div class="devis-group">
+          <label for="register-password"><i class="fa-solid fa-lock icon"></i> Mot de passe :</label>
+          <input type="password" id="register-password" required placeholder="Choisissez un mot de passe">
+        </div>
+        <button type="submit" class="devis-btn">Créer mon compte</button>
+        <div id="client-register-feedback" style="display:none;color:green;margin-top:1em;font-weight:bold;">Compte créé !</div>
+      </form>
+      <form id="client-add-colis-form" class="devis-form-style" style="display:none; margin-top:2rem;">
+        <h2>Ajouter un colis</h2>
+        <div class="devis-group">
+          <label for="colis-suivi"><i class="fa-solid fa-hashtag icon"></i> Numéro de suivi :</label>
+          <input type="text" id="colis-suivi" required placeholder="Numéro de suivi du colis">
+        </div>
+        <div class="devis-group">
+          <label for="colis-description"><i class="fa-solid fa-box icon"></i> Description du colis :</label>
+          <input type="text" id="colis-description" required placeholder="Ex : vêtements, téléphone, etc.">
+        </div>
+        <div class="devis-group">
+          <label for="colis-nombre"><i class="fa-solid fa-list-ol icon"></i> Nombre d'articles :</label>
+          <input type="number" id="colis-nombre" min="1" required placeholder="Ex : 3">
+        </div>
+        <div class="devis-group">
+          <label for="colis-prix"><i class="fa-solid fa-money-bill-wave icon"></i> Prix d'achat (FCFA) :</label>
+          <input type="number" id="colis-prix" min="0" step="0.01" required placeholder="Ex : 25000">
+        </div>
+        <div class="devis-group">
+          <label for="colis-capture"><i class="fa-solid fa-image icon"></i> Capture du colis (page vendeur) :</label>
+          <input type="file" id="colis-capture" accept="image/*" required>
+        </div>
+        <button type="submit" class="devis-btn">Ajouter le colis</button>
+        <div id="colis-feedback" style="display:none;color:green;margin-top:1em;font-weight:bold;">Colis ajouté !</div>
+      </form>
+    </section>
+  </main>
+  <footer>
+    <div class="footer-contact">
+      WhatsApp : <a href="https://wa.me/2250713916946" target="_blank">+225 07 13 91 69 46</a>
+      | Email : <a href="mailto:contact@chtransit.com">contact@chtransit.com</a>
+    </div>
+    <p>&copy; 2025 CH.TRANSIT</p>
+  </footer>
+  <script>
+    // Afficher le formulaire de connexion quand on clique sur "Ajouter un colis"
+    document.getElementById('btn-ajouter-colis').onclick = function() {
+      document.getElementById('btn-ajouter-colis').style.display = 'none';
+      document.getElementById('client-login-form').style.display = 'block';
+      document.getElementById('register-link').style.display = 'block';
+    };
+    // Affichage du formulaire d'inscription
+    document.getElementById('show-register').onclick = function(e) {
+      e.preventDefault();
+      document.getElementById('client-login-form').style.display = 'none';
+      document.getElementById('client-register-form').style.display = 'block';
+      document.getElementById('register-link').style.display = 'none';
+    };
+    // Feedback visuel connexion (démo, pas de backend)
+    document.getElementById('client-login-form').onsubmit = function(e) {
+      e.preventDefault();
+      document.getElementById('client-login-feedback').style.display = 'block';
+      setTimeout(function(){ document.getElementById('client-login-feedback').style.display = 'none'; }, 2000);
+      setTimeout(function(){
+        document.getElementById('client-login-form').style.display = 'none';
+        document.getElementById('register-link').style.display = 'none';
+        document.getElementById('client-add-colis-form').style.display = 'block';
+      }, 2200);
+    };
+    // Feedback visuel inscription (démo, pas de backend)
+    document.getElementById('client-register-form').onsubmit = function(e) {
+      e.preventDefault();
+      document.getElementById('client-register-feedback').style.display = 'block';
+      setTimeout(function(){ document.getElementById('client-register-feedback').style.display = 'none'; }, 2000);
+      setTimeout(function(){
+        document.getElementById('client-register-form').style.display = 'none';
+        document.getElementById('client-login-form').style.display = 'block';
+        document.getElementById('register-link').style.display = 'block';
+      }, 2200);
+    };
+    // Feedback visuel ajout colis (démo, pas de backend)
+    document.getElementById('client-add-colis-form').onsubmit = function(e) {
+      e.preventDefault();
+      document.getElementById('colis-feedback').style.display = 'block';
+      setTimeout(function(){ document.getElementById('colis-feedback').style.display = 'none'; }, 2000);
+      document.getElementById('client-add-colis-form').reset();
+    };
+  </script>
+</body>
+</html>
