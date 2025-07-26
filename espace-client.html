@@ -20,8 +20,11 @@
   <main>
     <section>
       <h1>Espace Client</h1>
-      <p>Pour ajouter un colis, veuillez d'abord vous connecter à votre compte ou en créer un nouveau.</p>
-      <button id="btn-ajouter-colis" class="devis-btn" style="margin-bottom:1.5rem;">Ajouter un colis</button>
+      <div id="auth-choice" style="display:flex;flex-direction:column;align-items:center;gap:1.5rem;margin-bottom:2rem;">
+        <button id="show-login" class="devis-btn" style="width:220px;">Se connecter</button>
+        <span>ou</span>
+        <button id="show-register-btn" class="devis-btn" style="width:220px;background:#00bcd4;">Créer un compte</button>
+      </div>
       <form id="client-login-form" class="devis-form-style" style="display:none;">
         <div class="devis-group">
           <label for="client-email"><i class="fa-solid fa-envelope icon"></i> Email :</label>
@@ -84,6 +87,23 @@
   <button id="add-colis-float" style="display:none;position:fixed;right:24px;bottom:24px;background:#ff9800;color:#fff;border:none;border-radius:50%;width:56px;height:56px;box-shadow:0 4px 16px rgba(0,0,0,0.18);z-index:10000;cursor:pointer;font-size:2em;align-items:center;justify-content:center;">
     <i class="fa-solid fa-plus"></i>
   </button>
+  <!-- Bouton flottant WhatsApp -->
+  <a href="https://wa.me/2250713916946" target="_blank" id="whatsapp-float" style="position:fixed;bottom:100px;left:24px;z-index:10001;background:#25d366;border-radius:50%;width:56px;height:56px;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 16px rgba(0,0,0,0.18);">
+    <img src="logo-chtransit.png" alt="WhatsApp" style="width:32px;height:32px;">
+  </a>
+  <!-- Chatbot flottant -->
+  <div id="chatbot-float" style="position:fixed;bottom:24px;left:24px;z-index:10001;">
+    <button id="open-chatbot" style="background:#0052cc;color:#fff;border:none;border-radius:50%;width:56px;height:56px;box-shadow:0 4px 16px rgba(0,0,0,0.18);font-size:2em;cursor:pointer;display:flex;align-items:center;justify-content:center;">
+      <i class="fa-solid fa-comments"></i>
+    </button>
+    <div id="chatbot-window" style="display:none;position:absolute;bottom:70px;left:0;width:320px;max-width:90vw;background:#fff;border-radius:12px;box-shadow:0 2px 16px rgba(0,82,204,0.18);padding:1em;">
+      <div id="chatbot-messages" style="height:220px;overflow-y:auto;margin-bottom:0.5em;"></div>
+      <form id="chatbot-form" style="display:flex;gap:0.5em;">
+        <input type="text" id="chatbot-input" placeholder="Posez votre question..." style="flex:1;padding:0.5em;border-radius:6px;border:1px solid #eee;">
+        <button type="submit" style="background:#0052cc;color:#fff;border:none;border-radius:6px;padding:0.5em 1em;">Envoyer</button>
+      </form>
+    </div>
+  </div>
   <footer>
     <div class="footer-contact">
       WhatsApp : <a href="https://wa.me/2250713916946" target="_blank">+225 07 13 91 69 46</a>
@@ -411,6 +431,31 @@
       exportBtn.onclick = exportColisCSV;
       document.getElementById('mes-colis-section').prepend(exportBtn);
     }
+  </script>
+  <script>
+  // Chatbot simple (démo)
+  document.getElementById('open-chatbot').onclick = function() {
+    const win = document.getElementById('chatbot-window');
+    win.style.display = win.style.display === 'block' ? 'none' : 'block';
+  };
+  document.getElementById('chatbot-form').onsubmit = function(e) {
+    e.preventDefault();
+    const input = document.getElementById('chatbot-input');
+    const msg = input.value.trim();
+    if (!msg) return;
+    const messages = document.getElementById('chatbot-messages');
+    messages.innerHTML += `<div style='margin-bottom:0.5em;text-align:right;'><span style='background:#0052cc;color:#fff;padding:0.4em 0.8em;border-radius:8px;display:inline-block;'>${msg}</span></div>`;
+    input.value = '';
+    // Réponse automatique simple
+    setTimeout(() => {
+      let response = "Je suis le chatbot CH.TRANSIT. Posez-moi vos questions sur vos colis, l'expédition, ou l'espace client !";
+      if (msg.toLowerCase().includes('colis')) response = "Pour voir vos colis, connectez-vous et cliquez sur 'Mes Colis'.";
+      if (msg.toLowerCase().includes('ajouter')) response = "Cliquez sur le bouton + en bas à gauche pour ajouter un colis.";
+      if (msg.toLowerCase().includes('export')) response = "Utilisez le bouton 'Exporter mes colis (CSV)' pour télécharger la liste.";
+      messages.innerHTML += `<div style='margin-bottom:0.5em;text-align:left;'><span style='background:#eee;color:#222;padding:0.4em 0.8em;border-radius:8px;display:inline-block;'>${response}</span></div>`;
+      messages.scrollTop = messages.scrollHeight;
+    }, 700);
+  };
   </script>
 </body>
 </html>
